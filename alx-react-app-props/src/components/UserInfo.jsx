@@ -1,6 +1,6 @@
-import UserDetails from './UserProfile';
+import UserDetails from './UserDetails';
 
-function UserInfo () {
+function UserInfo() {
   return <UserDetails />;
 }
 
