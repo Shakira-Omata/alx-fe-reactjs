@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 function Navbar() {
     return (
         <nav style={{
-            background: '#333',
+            backgroundColor: '#333',
             padding: '1rem',
             marginBottom: '20px'
         }}>
             <ul style={{
                 listStyle: 'none',
                 display: 'flex',
+                justifyContent: 'center',
                 gap: '20px',
                 margin: 0,
                 padding: 0
