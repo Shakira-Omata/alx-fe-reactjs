@@ -1,4 +1,4 @@
-import UserDetails from './UserProfile';
+import UserDetails from './components/UserDetails';
 
 function UserInfo() {
   return <UserDetails />;
