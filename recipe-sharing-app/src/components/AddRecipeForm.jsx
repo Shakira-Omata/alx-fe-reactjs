@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import useRecipeStore from '../store/recipeStore';
 
 const AddRecipeForm = () => {
@@ -8,29 +8,52 @@ const AddRecipeForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (!title || !description) return;
-    addRecipe({ id: Date.now(), title, description });
+    
+    if (!title.trim() || !description.trim()) {
+      alert('Please fill in all fields');
+      return;
+    }
+    
+    addRecipe({ 
+      id: Date.now(), 
+      title, 
+      description 
+    });
+    
+    // Reset form fields
     setTitle('');
     setDescription('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        required
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description"
-        required
-      />
-      <button type="submit">Add Recipe</button>
-    </form>
+    <div className="add-recipe-form">
+      <h2>Add New Recipe</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="title">Recipe Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Enter recipe title"
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="description">Recipe Description:</label>
+          <textarea
+            id="description"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Enter recipe description"
+            rows="4"
+          />
+        </div>
+        
+        <button type="submit" className="submit-button">Add Recipe</button>
+      </form>
+    </div>
   );
 };
 
