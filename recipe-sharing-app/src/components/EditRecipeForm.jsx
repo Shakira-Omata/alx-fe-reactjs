@@ -6,6 +6,16 @@ const EditRecipeForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const recipeId = parseInt(id);
+  const recipes = useRecipeStore((state) => state.recipes);
+  const existingRecipe = recipes.find((recipe) => recipe.id === recipeId);
+  
+  const [formData, setFormData] = useState({
+    title: '',
+    description: '',
+    ingredients: [''],
+    instructions: [''],
+    prepTime: '' // Added prep time field
+  });
   
   const recipe = useRecipeStore((state) => 
     state.recipes.find((recipe) => recipe.id === recipeId)
@@ -21,6 +31,39 @@ const EditRecipeForm = () => {
       setDescription(recipe.description);
     }
   }, [recipe]);
+
+  useEffect(() => {
+    if (existingRecipe) {
+      setFormData({
+        ...existingRecipe,
+        ingredients: [...existingRecipe.ingredients],
+        instructions: [...existingRecipe.instructions],
+        prepTime: existingRecipe.prepTime || '' // Handle recipes without prep time
+      });
+    }
+  }, [existingRecipe]);
+
+  if (!existingRecipe) {
+    return (
+      <div className="container mx-auto p-4">
+        <h2 className="text-xl font-bold mb-4">Recipe not found</h2>
+        <button 
+          onClick={() => navigate('/')}
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        >
+          Back to Recipes
+        </button>
+      </div>
+    );
+  }
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();

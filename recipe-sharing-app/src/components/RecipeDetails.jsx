@@ -31,6 +31,35 @@ const RecipeDetails = () => {
         <p>{recipe.description}</p>
       </div>
       
+      {recipe.prepTime && (
+        <div className="recipe-section">
+          <h3>Preparation Time</h3>
+          <p>{recipe.prepTime} minutes</p>
+        </div>
+      )}
+      
+      {recipe.ingredients && recipe.ingredients.length > 0 && (
+        <div className="recipe-section">
+          <h3>Ingredients</h3>
+          <ul>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index}>{ingredient}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+      
+      {recipe.instructions && recipe.instructions.length > 0 && (
+        <div className="recipe-section">
+          <h3>Instructions</h3>
+          <ol>
+            {recipe.instructions.map((step, index) => (
+              <li key={index}>{step}</li>
+            ))}
+          </ol>
+        </div>
+      )}
+      
       <div className="recipe-actions">
         <button 
           onClick={() => navigate(`/edit/${recipe.id}`)} 
