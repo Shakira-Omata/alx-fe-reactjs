@@ -1,71 +1,29 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useNavigate } from 'react-router-dom';
-import RecipeList from './components/RecipeList.jsx';
-import AddRecipeForm from './components/AddRecipeForm.jsx';
-import RecipeDetails from './components/RecipeDetails.jsx';
-import EditRecipeForm from './components/EditRecipeForm.jsx';
-import ErrorBoundary from './components/ErrorBoundary';
-import './App.css';
-import SearchFilter from './components/SearchFilter.jsx';
-
-
-const ErrorBoundaryWrapper = ({ children }) => {
-  const navigate = useNavigate();
-  
-  const handleReset = () => {
-    
-    navigate('/');
-  };
-  
-  return (
-    <ErrorBoundary resetErrorBoundary={handleReset}>
-      {children}
-    </ErrorBoundary>
-  );
-};
+import RecipeList from './components/RecipeList'; // Or 
+import AddRecipeForm from './components/AddRecipeForm'; // Or 
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import RecipeDetails from './RecipeDetails';
+import RecipeList from './RecipeList'; // Assuming you have a component to list recipes
 
 function App() {
   return (
-    <Router>
-      <div className="app-container">
-        <header>
-          <h1>Recipe Sharing App</h1>
-          <SearchFilter />
-          <nav>
-            <Link to="/" className="nav-link">Home</Link>
-          </nav>
-        </header>
-        
-        <main>
-          <Routes>
-            <Route path="/" element={
-              <ErrorBoundaryWrapper>
-                <div className="content-wrapper">
-                  <AddRecipeForm />
-                  <RecipeList />
-                </div>
-              </ErrorBoundaryWrapper>
-            } />
-            
-            <Route path="/recipe/:id" element={
-              <ErrorBoundaryWrapper>
-                <RecipeDetails />
-              </ErrorBoundaryWrapper>
-            } />
-            
-            <Route path="/edit/:id" element={
-              <ErrorBoundaryWrapper>
-                <EditRecipeForm />
-              </ErrorBoundaryWrapper>
-            } />
-          </Routes>
-        </main>
-        
-        <footer>
-          <p>&copy; 2025 Recipe Sharing App</p>
-        </footer>
-      </div>
-    </Router>
+    <div>
+      <h1>Recipe Sharing App</h1>
+      <AddRecipeForm />
+      <RecipeList />
+    </div>
+  );
+}
+
+
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/recipes" element={<RecipeList />} />
+        <Route path="/recipes/:recipeId" element={<RecipeDetails />} /> 
+      </Routes>
+    </BrowserRouter>
   );
 }
 
