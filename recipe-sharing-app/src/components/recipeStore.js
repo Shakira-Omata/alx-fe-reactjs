@@ -34,6 +34,9 @@ export const useRecipeStore = create((set, get) => ({
     };
   }),
 
+  setSearchQuery: (query) => set({ searchQuery: query }),
+  setFilterCategory: (category) => set({ filterCategory: category }),
+
   deleteRecipe: (recipeId) => set((state) => {
     const remainingRecipes = state.recipes.filter((recipe) => recipe.id !== recipeId);
     return {

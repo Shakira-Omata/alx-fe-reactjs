@@ -6,6 +6,7 @@ import RecipeDetails from './components/RecipeDetails.jsx';
 import EditRecipeForm from './components/EditRecipeForm.jsx';
 import ErrorBoundary from './components/ErrorBoundary';
 import './App.css';
+import SearchFilter from './components/SearchFilter.jsx';
 
 
 const ErrorBoundaryWrapper = ({ children }) => {
@@ -29,6 +30,7 @@ function App() {
       <div className="app-container">
         <header>
           <h1>Recipe Sharing App</h1>
+          <SearchFilter />
           <nav>
             <Link to="/" className="nav-link">Home</Link>
           </nav>
