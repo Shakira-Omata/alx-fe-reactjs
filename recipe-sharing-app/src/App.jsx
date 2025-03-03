@@ -1,26 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import RecipeList from './RecipeList.';
-import AddRecipeForm from './AddRecipeForm';
-import RecipeDetails from './RecipeDetails';
-import EditRecipeForm from './EditRecipeForm';
-import Navbar from './Navbar';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-100">
-        <Navbar />
-        <div className="container mx-auto py-6 px-4">
-          <Routes>
-            <Route path="/" element={<RecipeList />} />
-            <Route path="/add" element={<AddRecipeForm />} />
-            <Route path="/recipe/:recipeId" element={<RecipeDetails />} />
-            <Route path="/edit/:recipeId" element={<EditRecipeForm />} />
-          </Routes>
+    <div className="app-container">
+      <header>
+        <h1>Recipe Sharing App</h1>
+      </header>
+      
+      <main>
+        <div className="content-wrapper">
+          <AddRecipeForm />
+          <RecipeList />
         </div>
-      </div>
-    </Router>
+      </main>
+      
+      <footer>
+        <p>&copy; 2025 Recipe Sharing App</p>
+      </footer>
+    </div>
   );
 }
 
