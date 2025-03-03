@@ -26,6 +26,23 @@ header {
   border-radius: 8px;
 }
 
+nav {
+  margin-top: 10px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr;
@@ -38,11 +55,12 @@ header {
   }
 }
 
-.add-recipe-form, .recipe-list {
+.add-recipe-form, .recipe-list, .recipe-details, .edit-recipe-form, .recipe-not-found {
   background-color: white;
   padding: 25px;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
 }
 
 h2 {
@@ -70,7 +88,7 @@ input, textarea {
   font-size: 16px;
 }
 
-.submit-button {
+.submit-button, .save-button, .back-button, .edit-button, .view-button {
   background-color: #4caf50;
   color: white;
   border: none;
@@ -80,10 +98,47 @@ input, textarea {
   font-size: 16px;
   margin-top: 10px;
   transition: background-color 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
-.submit-button:hover {
+.submit-button:hover, .save-button:hover, .back-button:hover, .edit-button:hover, .view-button:hover {
   background-color: #3e8e41;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.cancel-button:hover {
+  background-color: #d32f2f;
+}
+
+.delete-button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-left: 10px;
+  transition: background-color 0.3s;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
 }
 
 .recipe-card {
@@ -99,6 +154,32 @@ input, textarea {
   margin-bottom: 10px;
 }
 
+.recipe-link {
+  color: #4caf50;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.recipe-link:hover {
+  color: #3e8e41;
+  text-decoration: underline;
+}
+
+.recipe-card-actions {
+  margin-top: 15px;
+}
+
+.recipe-actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.recipe-info {
+  margin: 20px 0;
+  line-height: 1.8;
+}
+
 footer {
   text-align: center;
   margin-top: 50px;
@@ -106,3 +187,7 @@ footer {
   color: #666;
 }
 
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+}
