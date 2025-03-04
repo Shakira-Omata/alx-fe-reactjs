@@ -2,22 +2,27 @@ import React from 'react';
 import useRecipeStore from './recipeStore';
 
 const FavoritesList = () => {
-  const favorites = useRecipeStore(state =>
-    state.favorites.map(id => state.recipes.find(recipe => recipe.id === id))
-  );
+  // Access favorites and recipes correctly
+  const favorites = useRecipeStore(state => state.favorites);
+  const recipes = useRecipeStore(state => state.recipes);
+
+  // Ensure favorites is an array before mapping
+  const favoriteRecipes = (favorites || [])
+    .map(id => recipes.find(recipe => recipe.id === id))
+    .filter(recipe => recipe !== undefined); // Remove any undefined values
 
   return (
     <div>
       <h2>My Favorites</h2>
-      {favorites.length > 0 ? (
-        favorites.map(recipe => (
+      {favoriteRecipes.length > 0 ? (
+        favoriteRecipes.map(recipe => (
           <div key={recipe.id}>
             <h3>{recipe.title}</h3>
             <p>{recipe.description}</p>
           </div>
         ))
       ) : (
-        <p>No favorite recipes yet.</p>
+        <p>No favorite recipes yet!</p>
       )}
     </div>
   );
