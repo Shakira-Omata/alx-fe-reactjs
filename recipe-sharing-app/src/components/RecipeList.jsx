@@ -9,6 +9,9 @@ const RecipeList = () => {
   const filteredRecipes = useRecipeStore(state => state.filteredRecipes);
   const searchTerm = useRecipeStore(state => state.searchTerm);
   const setSearchTerm = useRecipeStore(state => state.setSearchTerm);
+  const favorites = useRecipeStore(state => state.favorites);
+  const addFavorite = useRecipeStore(state => state.addFavorite);
+  const removeFavorite = useRecipeStore(state => state.removeFavorite);
 
 
   useEffect(() => {
@@ -17,6 +20,7 @@ const RecipeList = () => {
     }
   }, []);
   const recipesToDisplay = searchTerm ? filteredRecipes : recipes;
+  const isFavorite = (id) => favorites.includes(id);
 
   return (
     <div className="recipe-list-container">
@@ -27,7 +31,14 @@ const RecipeList = () => {
       {recipesToDisplay.length > 0 ? (
         <div className="recipe-list">
           {recipesToDisplay.map(recipe => (
-            <RecipeCard key={recipe.id} recipe={recipe} />
+            <div key={recipe.id}>
+              <RecipeCard recipe={recipe} />
+              <button onClick={() => 
+                isFavorite(recipe.id) ? removeFavorite(recipe.id) : addFavorite(recipe.id)
+              }>
+                {isFavorite(recipe.id) ? "❤️ Remove Favorite" : "🤍 Add to Favorites"}
+              </button>
+            </div>
           ))}
         </div>
       ) : (

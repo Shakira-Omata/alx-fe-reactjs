@@ -23,6 +23,24 @@ addRecipe: (newRecipe) => set((state) => ({
           updatedRecipes
       };
     }),
+    addFavorite: (recipeId) => set(state => {
+      if (!state.favorites.includes(recipeId)) {
+        return { favorites: [...state.favorites, recipeId] };
+      }
+      return state;
+    }),
+    removeFavorite: (recipeId) => set(state => ({
+      favorites: state.favorites.filter(id => id !== recipeId),
+    })),
+    recommendations: [],
+  generateRecommendations: () => set(state => {
+    const recommended = state.recipes.filter(recipe =>
+      state.favorites.includes(recipe.id) && Math.random() > 0.5
+    );
+    return { recommendations: recommended };
+  }),
+
+  
     deleteRecipe: (id) =>
       set((state) => {
         const remainingRecipes = state.recipes.filter(recipe => recipe.id !== id);
