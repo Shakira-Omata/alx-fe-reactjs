@@ -2,17 +2,17 @@ import React from 'react';
 import useRecipeStore from './recipeStore';
 
 const SearchBar = () => {
-  const { searchTerm, setSearchTerm } = useRecipeStore(state => ({
-    searchTerm: state.searchTerm,
-    setSearchTerm: state.setSearchTerm
-  }));
+  // Select state separately to avoid re-renders
+  const searchTerm = useRecipeStore(state => state.searchTerm);
+  const setSearchTerm = useRecipeStore(state => state.setSearchTerm);
+
 
   return (
     <div className="search-bar">
       <input
         type="text"
         placeholder="Search recipes by name..."
-        value={searchTerm}
+        value={searchTerm || ''}
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-input"
       />
