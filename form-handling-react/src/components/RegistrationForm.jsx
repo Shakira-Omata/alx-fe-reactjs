@@ -8,13 +8,17 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formData = {
-      username,
-      email,
-      password,
-    };
+    let validationErrors = {};
+    if (!username) validationErrors.username = "Username is required";
+    if (!email) validationErrors.email = "Email is required";
+    if (!password) validationErrors.password = "Password is required";
 
-    console.log('Form submitted:', formData);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return; //stop form submission if errors exist.
+    }
+
+    console.log("Form submitted:", { username, email, password });
   };
 
   return (
