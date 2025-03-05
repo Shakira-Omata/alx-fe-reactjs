@@ -1,75 +1,50 @@
 import React, { useState } from 'react';
 
 const RegistrationForm = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
-
-  const [errors, setErrors] = useState({});
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.username) newErrors.username = 'Username is required';
-    if (!formData.email) newErrors.email = 'Email is required';
-    if (!formData.password) newErrors.password = 'Password is required';
-    return newErrors;
-  };
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationErrors = validate();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-    } else {
-      console.log('Form submitted:', formData);
-      setFormData({ username: '', email: '', password: '' }); // Reset form after submission
-      setErrors({});
-    }
+
+    const formData = {
+      username,
+      email,
+      password,
+    };
+
+    console.log('Form submitted:', formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="registration-form">
-      <div>
-        <label>Username:</label>
-        <input
-          type="text"
-          name="username"
-          value={formData.username}  // ✅ Ensure controlled component
-          onChange={handleChange}
+    <form onSubmit={handleSubmit}>
+      <label>
+        Username:
+        <input 
+          type="text" 
+          value={username} 
+          onChange={(e) => setUsername(e.target.value)} 
         />
-        {errors.username && <p className="error">{errors.username}</p>}
-      </div>
+      </label>
+      
+      <label>
+        Email:
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+        />
+      </label>
 
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={formData.email}  // ✅ Ensure controlled component
-          onChange={handleChange}
+      <label>
+        Password:
+        <input 
+          type="password" 
+          value={password} 
+          onChange={(e) => setPassword(e.target.value)} 
         />
-        {errors.email && <p className="error">{errors.email}</p>}
-      </div>
-
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={formData.password}  // ✅ Ensure controlled component
-          onChange={handleChange}
-        />
-        {errors.password && <p className="error">{errors.password}</p>}
-      </div>
+      </label>
 
       <button type="submit">Register</button>
     </form>
@@ -77,6 +52,5 @@ const RegistrationForm = () => {
 };
 
 export default RegistrationForm;
-
 
 
