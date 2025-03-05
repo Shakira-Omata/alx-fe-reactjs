@@ -41,19 +41,34 @@ const RegistrationForm = () => {
         <form onSubmit={handleSubmit} className='registration-form'>
             <div>
                 <label>Username:</label>
-                <input type='text' name='username' value={formData.username} onChange={handleChange} />
-                {errors.username && <p className='error'>{errors.username}</p>}
+                <input 
+                type='text' 
+                name='username' 
+                value={formData.username} 
+                onChange={handleChange} 
+            />
+             {errors.username && <p className='error'>{errors.username}</p>}
             </div>
             <div>
                 <label>Email:</label>
-                <input type='email' name='email' value={formData.email} onChange={handleChange} />
-                {errors.email && <p className='error'>{errors.email}</p>}
+                <input 
+                type='email' 
+                name='email' 
+                value={formData.email} 
+                onChange={handleChange} 
+            />
+            {errors.email && <p className='error'>{errors.email}</p>}
             </div>
 
             <div>
                 <label>Password:</label>
-                <input type='password' name='password' value={formData.password} onChange={handleChange} />
-                {errors.password && <p className='error'>{errors.password}</p>}
+                <input 
+                type='password' 
+                name='password' 
+                value={formData.password} 
+                onChange={handleChange} 
+            />
+            {errors.password && <p className='error'>{errors.password}</p>}
             </div>
 
             <button type='submit'>Register</button>
