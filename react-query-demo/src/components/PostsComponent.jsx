@@ -1,3 +1,4 @@
+import React from 'react';
 import { useQuery } from "@tanstack/react-query";
 
 
@@ -10,10 +11,12 @@ const fetchPosts = async () => {
 };
 
 const postsComponent = () => {
-    const {data, error, isLoading, refetch} = useQuery({
-        queryKey: ['posts'],
-        queryFn: fetchPosts
-    });
+    const { data, isLoading, isError, error, refetch } = useQuery("posts", fetchPosts, {
+        cacheTime: 1000 * 60 * 5,  
+        staleTime: 1000 * 60,      
+        refetchOnWindowFocus: false,  
+        keepPreviousData: true,  
+      });
 
     if (isLoading) return <p>loading...</p>;
     if (isError) return <p>Error: {error.message}</p>;
