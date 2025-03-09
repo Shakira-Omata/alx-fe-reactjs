@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import BlogPost from "./components/BlogPost";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path="/profile/*" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
         <Route path="/blog/:id" element={<BlogPost />} />
+        
+        
       </Routes>
     </Router>
   );
