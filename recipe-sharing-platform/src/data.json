@@ -3,25 +3,108 @@
       "id": 1,
       "title": "Spaghetti Carbonara",
       "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+      "ingredients": [
+        "200g Spaghetti",
+        "2 Eggs",
+        "50g parmesan cheese",
+        "4 slices of bacon",
+        "Black pepper",
+        "salt"
+      ],
+      "instructions": [
+        "Cook the spaghetti in a large pot of boiling salted water until al dente.",
+        "While the spaghetti is cooking, whisk the eggs in a bowl and add the grated parmesan cheese.",
+        "Fry the bacon in a pan until crispy, then chop into small pieces.",
+        "Drain the spaghetti, reserving some of the cooking water.",
+        "Add the spaghetti to the pan with the bacon, then pour in the egg and cheese mixture.",
+        "Toss the spaghetti in the sauce, adding a little of the reserved cooking water to loosen the sauce if needed.",
+        "Season with black pepper and salt to taste.",
+        "Serve hot with extra parmesan cheese on top."
+      ]
     },
     {
       "id": 2,
       "title": "Chicken Tikka Masala",
       "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato-based gravy.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+        "ingredients": [
+            "500g boneless chicken",
+            "1 cup yogurt",
+            "2 tbsp ginger garlic paste",
+            "1 tbsp garam masala",
+            "1 tbsp coriander powder",
+            "1 tbsp cumin powder",
+            "1 tbsp turmeric powder",
+            "1 tbsp chili powder",
+            "1 cup tomato puree",
+            "1 cup cream",
+            "1 tbsp butter",
+            "Salt to taste"
+        ],
+        "instructions": [
+            "Marinate the chicken in yogurt, ginger garlic paste, and all the spices for at least 2 hours.",
+            "Grill the marinated chicken until cooked through.",
+            "In a separate pan, heat the butter and add the tomato puree.",
+            "Cook the tomato puree until the oil separates from the mixture.",
+            "Add the cream and cook for another 5 minutes.",
+            "Add the grilled chicken to the tomato cream sauce and simmer for 10 minutes.",
+            "Serve hot with naan or rice."
+        ]
     },
     {
       "id": 3,
       "title": "Sushi Rolls",
       "summary": "Delicious Japanese sushi rolls with fresh fish, rice, and seaweed.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+        "ingredients": [
+            "2 cups sushi rice",
+            "4 cups water",
+            "1/2 cup rice vinegar",
+            "2 tbsp sugar",
+            "1 tsp salt",
+            "Nori seaweed sheets",
+            "Assorted fish (salmon, tuna, etc.)",
+            "Vegetables (cucumber, avocado, etc.)",
+            "Soy sauce, wasabi, and pickled ginger for serving"
+        ],
+        "instructions": [
+            "Rinse the sushi rice in cold water until the water runs clear.",
+            "Cook the rice with water in a rice cooker or on the stovetop.",
+            "In a small saucepan, heat the rice vinegar, sugar, and salt until dissolved.",
+            "Spread the cooked rice on a large plate and drizzle the vinegar mixture over it.",
+            "Mix the rice and vinegar gently to combine.",
+            "Place a sheet of nori on a bamboo sushi mat.",
+            "Spread a thin layer of rice on the nori, leaving a 1-inch border at the top.",
+            "Arrange the fish and vegetables in a line across the rice.",
+            "Roll the sushi tightly using the bamboo mat.",
+            "Slice the sushi roll into bite-sized pieces.",
+            "Serve with soy sauce, wasabi, and pickled ginger."
+        ]
     },
     {
       "id": 4,
       "title": "Margherita Pizza",
       "summary": "Classic Italian pizza with tomato sauce, mozzarella cheese, and fresh basil.",
-      "image": "https://via.placeholder.com/150"
+      "image": "https://via.placeholder.com/150",
+        "ingredients": [
+            "1 pizza dough",
+            "1/2 cup tomato sauce",
+            "1 cup mozzarella cheese",
+            "Fresh basil leaves",
+            "Olive oil",
+            "Salt and pepper"
+        ],
+        "instructions": [
+            "Preheat the oven to 450°F (230°C).",
+            "Roll out the pizza dough on a floured surface to your desired thickness.",
+            "Spread the tomato sauce over the pizza dough, leaving a 1-inch border around the edges.",
+            "Sprinkle the mozzarella cheese over the tomato sauce.",
+            "Bake the pizza in the preheated oven for 10-15 minutes, or until the crust is golden brown and the cheese is bubbly.",
+            "Remove the pizza from the oven and top with fresh basil leaves.",
+            "Drizzle with olive oil and season with salt and pepper.",
+            "Slice and serve hot."
+        ]
     }
   ]
   
