@@ -4,7 +4,7 @@ const AddRecipeForm = ({ onAddRecipe }) => {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [instructions, setInstructions] = useState("");
-  const [error, setError] = useState({});
+  const [errors, setErrors] = useState({});
 
 
   const validate = () => {
@@ -37,13 +37,13 @@ const AddRecipeForm = ({ onAddRecipe }) => {
       ingredients: ingredientList,
       instructions: instructionList,
     };
-    
+
     
     onAddRecipe(newRecipe);
     setTitle("");
     setIngredients("");
     setInstructions("");
-    setError({});
+    setErrors({});
   };
 
   return (
