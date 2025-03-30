@@ -11,7 +11,6 @@ function Search({ onSearch }) {
   };
 
   return (
-    <div className="search-container">
     <form onSubmit={handleSubmit}>
       <input
         type="text"
@@ -21,7 +20,6 @@ function Search({ onSearch }) {
       />
       <button type="submit">Search</button>
     </form>
-    </div>
   );
 }
 
