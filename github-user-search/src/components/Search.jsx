@@ -16,15 +16,16 @@ const Search = () => {
     setError("");
     setUsers([]);
     setPage(1);
+    setUser(null)
 
     try {
-      const data = await fetchUsers(username, location, minRepos, 1);
-      setUsers(data);
-    } catch (err) {
-      setError("Looks like we cant find the user");
-    }
-    setLoading(false);
-  };
+        const data = await fetchUserData(username);
+        setUser(data);
+      } catch (err) {
+        setError("Looks like we cant find the user"); 
+      }
+      setLoading(false);
+    };
   
 
   const handleLoadMore = async () => {
@@ -41,7 +42,6 @@ const Search = () => {
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h2 className="text-xl font-bold mb-4">GitHub User Search</h2>
       <form onSubmit={handleSearch} className="space-y-4">
         <input
           type="text"
