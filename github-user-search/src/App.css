@@ -28,6 +28,36 @@
   cursor: pointer;
 }
 
-.search-container button:hover {
-  background-color: #811c0f;
+.search-container button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.user-profile {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  max-width: 400px;
+  margin: 2rem auto;
+}
+
+.user-profile img {
+  border-radius: 50%;
+}
+
+.user-profile a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0366d6;
+  text-decoration: none;
+}
+
+.user-profile a:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: #cb2431;
+  margin-top: 1rem;
 }
