@@ -1,23 +1,18 @@
-import axios from 'axios';
+import axios from "axios";
 
-const fetchUserData = async (username) => {
+const BASE_URL = "https://api.github.com/search/users?q=";
+
+export const fetchUsers = async ({ query, location, minRepos }) => {
   try {
-    const response = await axios.get(`https://api.github.com/users/${username}`);
-    return response.data;
+    let searchQuery = query ? `${query}` : "";
+    if (location) searchQuery += `+location:${location}`;
+    if (minRepos) searchQuery += `+repos:>${minRepos}`;
+
+    const response = await axios.get(`${BASE_URL}${searchQuery}&per_page=10`);
+    return response.data.items; // The GitHub API returns users in the 'items' array
   } catch (error) {
-    if (error.response) {
-      // Handle  errors (4xx, 5xx)
-      if (error.response.status === 404) {
-        throw new Error(`User "${username}" not found on GitHub`);
-      }
-      throw new Error(`GitHub API error: ${error.response.status} ${error.response.statusText}`);
-    } else if (error.request) {
-        // Handle network errors (no response received)
-      throw new Error('No response from GitHub API - network error');
-    } else {
-      throw new Error('Error setting up request to GitHub API');
-    }
+    throw new Error("No users found. Try different search criteria.");
   }
 };
 
-export { fetchUserData };
+

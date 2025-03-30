@@ -1,77 +1,43 @@
-import { useState } from 'react';
-import { fetchUserData } from '../services/githubService';
+import { useState } from "react";
 
-const Search = () => {
-  const [username, setUsername] = useState('');
-  const [userData, setUserData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+function Search({ onSearch }) {
+  const [query, setQuery] = useState("");
+  const [location, setLocation] = useState("");
+  const [minRepos, setMinRepos] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!username.trim()) return;
-
-    setLoading(true);
-    setError(null);
-    setUserData(null);
-
-    try {
-      const data = await fetchUserData(username);
-      setUserData(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
+    onSearch({ query, location, minRepos });
   };
 
   return (
-    <div className="search-container">
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Enter GitHub username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className={error ? 'error-input' : ''}
-        />
-        <button type="submit" disabled={loading || !username.trim()}>
-          {loading ? 'Searching...' : 'Search'}
-        </button>
-      </form>
-
-      {loading && (
-        <div className="loading-message">
-          <p>Searching for GitHub user...</p>
-        </div>
-      )}
-
-      {error && (
-        <div className="error-message">
-          <p>{error}</p>
-          <p>Please try a different username.</p>
-        </div>
-      )}
-
-      {userData && (
-        <div className="user-profile">
-          <img src={userData.avatar_url} alt={userData.login} width="100" />
-          <h2>{userData.name || userData.login}</h2>
-          <p>{userData.bio}</p>
-          <p>Followers: {userData.followers} | Following: {userData.following}</p>
-          <a
-            href={userData.html_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="profile-link"
-          >
-            View GitHub Profile
-          </a>
-        </div>
-      )}
-    </div>
+    <form onSubmit={handleSubmit} className="flex flex-col space-y-4 p-4 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto">
+      <input
+        type="text"
+        placeholder="GitHub Username"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        className="p-2 border border-gray-300 rounded-md"
+      />
+      <input
+        type="text"
+        placeholder="Location (e.g., 'New York')"
+        value={location}
+        onChange={(e) => setLocation(e.target.value)}
+        className="p-2 border border-gray-300 rounded-md"
+      />
+      <input
+        type="number"
+        placeholder="Min Repos (e.g., 10)"
+        value={minRepos}
+        onChange={(e) => setMinRepos(e.target.value)}
+        className="p-2 border border-gray-300 rounded-md"
+      />
+      <button type="submit" className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
+        Search
+      </button>
+    </form>
   );
-};
+}
 
 export default Search;
-
