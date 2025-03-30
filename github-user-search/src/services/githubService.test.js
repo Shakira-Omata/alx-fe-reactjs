@@ -1,40 +1,40 @@
-import axios from 'axios';
-import { fetchUserData } from './githubService';
+import { fetchUsers } from "./githubService";
+import axios from "axios";
 
-jest.mock('axios');
+jest.mock("axios");
 
-describe('fetchUserData', () => {
-  it('should fetch user data successfully', async () => {
+describe("GitHub API Service", () => {
+  it("fetches users successfully with query", async () => {
     const mockData = {
-      login: 'testuser',
-      name: 'Test User',
-      avatar_url: 'https://example.com/avatar',
-      html_url: 'https://github.com/testuser',
-      bio: 'Test bio'
+      items: [
+        {
+          login: "octocat",
+          avatar_url: "https://github.com/images/error/octocat_happy.gif",
+          html_url: "https://github.com/octocat",
+          location: "San Francisco",
+          public_repos: 42,
+        },
+      ],
     };
+
     axios.get.mockResolvedValue({ data: mockData });
 
-    const result = await fetchUserData('testuser');
-    expect(result).toEqual(mockData);
-    expect(axios.get).toHaveBeenCalledWith('https://api.github.com/users/testuser');
+    const users = await fetchUsers({ query: "octocat", location: "", minRepos: "" });
+
+    expect(users).toEqual(mockData.items);
   });
 
-  it('should handle 404 error', async () => {
-    axios.get.mockRejectedValue({ response: { status: 404 } });
+  it("handles API rate limit error", async () => {
+    axios.get.mockRejectedValue({
+      response: { status: 403 },
+    });
 
-    await expect(fetchUserData('nonexistentuser'))
-      .rejects
-      .toThrow('User not found');
+    await expect(fetchUsers({ query: "octocat" })).rejects.toThrow("GitHub API rate limit exceeded. Try again later.");
   });
 
-  it('should handle other errors', async () => {
-    axios.get.mockRejectedValue(new Error('Network error'));
+  it("returns error when no users found", async () => {
+    axios.get.mockRejectedValue(new Error("No users found"));
 
-    await expect(fetchUserData('testuser'))
-      .rejects
-      .toThrow('Failed to fetch user data');
+    await expect(fetchUsers({ query: "unknownuser" })).rejects.toThrow("No users found. Try different search criteria.");
   });
 });
-
-// test the fetchUserData function.
-// checks for successful data fetching, handling of 404 errors, and handling of other errors.
