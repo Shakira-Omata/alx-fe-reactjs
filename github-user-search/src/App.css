@@ -61,3 +61,55 @@
   color: #cb2431;
   margin-top: 1rem;
 }
+
+.error-input {
+  border-color: #ff6b6b !important;
+}
+
+.loading-message {
+  color: #666;
+  margin: 1rem 0;
+}
+
+.error-message {
+  color: #ff6b6b;
+  background-color: #fff5f5;
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+}
+
+.profile-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive styles */
+
+@media (max-width: 600px) {
+  .app {
+    padding: 1rem;
+  }
+
+  .search-container input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .search-container button {
+    width: 100%;
+  }
+
+  .user-profile {
+    max-width: 100%;
+  }
+}
+

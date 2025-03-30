@@ -19,8 +19,7 @@ const Search = () => {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError('Looks like we can\'t find the user');
-      console.error(err);
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -34,26 +33,39 @@ const Search = () => {
           placeholder="Enter GitHub username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className={error ? 'error-input' : ''}
         />
         <button type="submit" disabled={loading || !username.trim()}>
-          Search
+          {loading ? 'Searching...' : 'Search'}
         </button>
       </form>
 
-      {loading && <p>Loading...</p>}
-      {error && <p className="error">{error}</p>}
+      {loading && (
+        <div className="loading-message">
+          <p>Searching for GitHub user...</p>
+        </div>
+      )}
+
+      {error && (
+        <div className="error-message">
+          <p>{error}</p>
+          <p>Please try a different username.</p>
+        </div>
+      )}
 
       {userData && (
         <div className="user-profile">
           <img src={userData.avatar_url} alt={userData.login} width="100" />
           <h2>{userData.name || userData.login}</h2>
           <p>{userData.bio}</p>
+          <p>Followers: {userData.followers} | Following: {userData.following}</p>
           <a
             href={userData.html_url}
             target="_blank"
             rel="noopener noreferrer"
+            className="profile-link"
           >
-            View Profile
+            View GitHub Profile
           </a>
         </div>
       )}
